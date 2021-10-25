@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-// connect to local MongoDB w/ table "todolistDB"
+// connect to local MongoDB atlas w/ table "todolistDB"
 mongoose.connect("mongodb+srv://admin-austin:test-123@cluster0.sdorq.mongodb.net/todolistDB?retryWrites=true&w=majority");
 
 // create a new schema for db input
@@ -146,6 +146,13 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
-app.listen(3000, function() {
+// if running on local machine port will be set to 3000
+// else port will be set by Heroku host
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function() {
   console.log("Server started on port 3000 at http://localhost:3000");
 });
