@@ -6,6 +6,9 @@ const express = require("express");
 const mongoose = require('mongoose');
 const _ = require("lodash");
 
+// environment variables
+require('dotenv').config();
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -13,8 +16,11 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+console.log(process.env.DATABASE_URI);
+
+
 // connect to local MongoDB atlas w/ table "todolistDB"
-mongoose.connect("mongodb+srv://admin-austin:test-123@cluster0.sdorq.mongodb.net/todolistDB?retryWrites=true&w=majority");
+mongoose.connect(process.env.DATABASE_URI);
 
 // create a new schema for db input
 const itemSchema = new mongoose.Schema( {
