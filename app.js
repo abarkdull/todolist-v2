@@ -16,8 +16,6 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-console.log(process.env.DATABASE_URI);
-
 
 // connect to local MongoDB atlas w/ table "todolistDB"
 mongoose.connect(process.env.DATABASE_URI);
