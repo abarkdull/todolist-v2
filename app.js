@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // connect to local MongoDB w/ table "todolistDB"
-mongoose.connect("mongodb://localhost:27017/todolistDB");
+mongoose.connect("mongodb+srv://admin-austin:test-123@cluster0.sdorq.mongodb.net/todolistDB?retryWrites=true&w=majority");
 
 // create a new schema for db input
 const itemSchema = new mongoose.Schema( {
